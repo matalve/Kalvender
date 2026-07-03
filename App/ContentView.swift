@@ -89,7 +89,3 @@ struct ContentView: View {
         .frame(width: 320)
     }
 }
-
-#Preview {
-    ContentView()
-}
