@@ -4,6 +4,8 @@ import SwiftUI
 struct CalendarEntry: TimelineEntry {
     let date: Date
     let grid: MonthGrid
+    var selectionStart: Date?
+    var selectionEnd: Date?
 }
 
 struct CalendarProvider: TimelineProvider {
@@ -19,7 +21,11 @@ struct CalendarProvider: TimelineProvider {
         let now = Date.now
         let entry = CalendarEntry(
             date: now,
-            grid: MonthGrid(monthOffset: MonthOffsetStore.currentOffset(today: now), today: now))
+            grid: MonthGrid(
+                monthOffset: MonthOffsetStore.currentOffset(today: now), today: now,
+                selectionStart: SelectionStore.start, selectionEnd: SelectionStore.end),
+            selectionStart: SelectionStore.start,
+            selectionEnd: SelectionStore.end)
 
         // Inget ändras förrän datumet slår över, så en enda entry räcker;
         // vid midnatt begärs en ny timeline och dagens-markeringen flyttas.

@@ -24,3 +24,35 @@ struct ChangeMonthIntent: AppIntent {
         return .result()
     }
 }
+
+/// Markerar ett datum, hotellboknings-stil: start → slut → rensa/börja om.
+struct SelectDayIntent: AppIntent {
+    static var title: LocalizedStringResource = "Markera datum"
+    static var isDiscoverable: Bool = false
+
+    @Parameter(title: "Datum")
+    var date: Date
+
+    init() {}
+
+    init(date: Date) {
+        self.date = date
+    }
+
+    func perform() async throws -> some IntentResult {
+        SelectionStore.handleTap(on: date)
+        return .result()
+    }
+}
+
+struct ClearSelectionIntent: AppIntent {
+    static var title: LocalizedStringResource = "Rensa markering"
+    static var isDiscoverable: Bool = false
+
+    init() {}
+
+    func perform() async throws -> some IntentResult {
+        SelectionStore.clear()
+        return .result()
+    }
+}

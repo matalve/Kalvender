@@ -12,6 +12,11 @@ struct MonthGrid {
         let number: Int
         let isInMonth: Bool
         let isToday: Bool
+        /// Start-/slutpunkt för markerat intervall (ett ensamt markerat
+        /// datum är enbart startpunkt).
+        let isSelectionEdge: Bool
+        /// Ligger inom ett komplett markerat intervall, inklusive kanterna.
+        let isInSelection: Bool
         var id: Date { date }
     }
 
@@ -36,9 +41,12 @@ struct MonthGrid {
         return calendar
     }
 
-    init(monthOffset: Int, today: Date = .now) {
+    init(monthOffset: Int, today: Date = .now,
+         selectionStart: Date? = nil, selectionEnd: Date? = nil) {
         let calendar = Self.calendar
         let startOfToday = calendar.startOfDay(for: today)
+        let selStart = selectionStart.map { calendar.startOfDay(for: $0) }
+        let selEnd = selectionEnd.map { calendar.startOfDay(for: $0) }
         let currentMonthStart = calendar.date(
             from: calendar.dateComponents([.year, .month], from: startOfToday))!
         let monthStart = calendar.date(
@@ -65,11 +73,22 @@ struct MonthGrid {
             let weekNumber = calendar.component(.weekOfYear, from: cursor)
             var days: [Day] = []
             for _ in 0..<7 {
+                let isEdge = [selStart, selEnd].contains { edge in
+                    edge.map { calendar.isDate(cursor, inSameDayAs: $0) } ?? false
+                }
+                let isInSelection: Bool
+                if let selStart, let selEnd {
+                    isInSelection = cursor >= selStart && cursor <= selEnd
+                } else {
+                    isInSelection = false
+                }
                 days.append(Day(
                     date: cursor,
                     number: calendar.component(.day, from: cursor),
                     isInMonth: calendar.isDate(cursor, equalTo: monthStart, toGranularity: .month),
-                    isToday: calendar.isDate(cursor, inSameDayAs: startOfToday)))
+                    isToday: calendar.isDate(cursor, inSameDayAs: startOfToday),
+                    isSelectionEdge: isEdge,
+                    isInSelection: isInSelection))
                 cursor = calendar.date(byAdding: .day, value: 1, to: cursor)!
             }
             weeks.append(Week(

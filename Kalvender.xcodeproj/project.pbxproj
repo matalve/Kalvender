@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		27619DA0A95E6EEBA8EA641F /* KalvenderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */; };
 		2EFE9BF56C582C3D1F4916F3 /* KalvenderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B06EE1AB4F083541F57B7C0 /* KalvenderApp.swift */; };
+		42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */; };
 		5DAD2A6EADD7E8E890FC870C /* CalendarMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */; };
 		5EF077E641D127469F8D99B8 /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */; };
 		717313D46EE5EA82DB31B34F /* KalvenderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DA78706E5316D7CCAFE40 /* KalvenderWidgetBundle.swift */; };
@@ -54,6 +55,7 @@
 		A5BA4DD6D709F3FF4BBA5691 /* Kalvender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalvender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E4BBD1341FAAA15DE065BD /* ChangeMonthIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMonthIntent.swift; sourceTree = "<group>"; };
 		A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
+		C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionStore.swift; sourceTree = "<group>"; };
 		DF3DA78706E5316D7CCAFE40 /* KalvenderWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalvenderWidgetBundle.swift; sourceTree = "<group>"; };
 		ED5C0AD790CCB720FD0AE9B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalvenderWidget.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */,
 				DF3DA78706E5316D7CCAFE40 /* KalvenderWidgetBundle.swift */,
 				98FE15AB404C576A02FD2A3B /* MonthOffsetStore.swift */,
+				C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -159,12 +162,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2660;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					15AC85B80EA16AE1014EF24D = {
+						DevelopmentTeam = BPGW64RVGJ;
 						ProvisioningStyle = Automatic;
 					};
 					2FEBD2B5F0F82A2195302C77 = {
+						DevelopmentTeam = BPGW64RVGJ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -200,6 +205,7 @@
 				27619DA0A95E6EEBA8EA641F /* KalvenderWidget.swift in Sources */,
 				717313D46EE5EA82DB31B34F /* KalvenderWidgetBundle.swift in Sources */,
 				AB47AD1668AB341006BB5F46 /* MonthOffsetStore.swift in Sources */,
+				42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +236,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/Kalvender.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -380,7 +385,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/Kalvender.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -396,7 +400,6 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Widget/KalvenderWidget.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -414,7 +417,6 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Widget/KalvenderWidget.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

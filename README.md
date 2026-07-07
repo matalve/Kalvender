@@ -22,6 +22,11 @@ för att snabbt se vilken veckodag ett datum infaller på och vilket veckonummer
 - **Bläddra mellan månader** direkt i widgeten med ◀ / ▶ — tryck på månadstiteln
   för att hoppa tillbaka till innevarande månad. Titeln visas i accentfärg när
   du inte är på dagens månad.
+- **Markera datum eller intervall**, hotellboknings-stil: tryck på en dag för att
+  markera den (raden under kalendern visar veckodag och veckonummer), tryck på en
+  senare dag för att markera hela intervallet (visar antal dagar och nätter).
+  Tryck på ✕ eller på startdatumet igen för att rensa. Intervall kan sträcka sig
+  över månadsgränser. Dagens datum visas som en ring; fylld cirkel är markeringen.
 - Bläddringen nollställs automatiskt vid midnatt, så widgeten vaknar alltid på rätt månad.
 - Stödjer widgetstorlekarna medium och stor, ljust/mörkt läge och systemets tonade widgetlägen.
 - Inga behörigheter, ingen nätverksåtkomst, inga händelser.
@@ -41,10 +46,15 @@ Kräver Xcode 16 eller senare.
 
 - **SwiftUI + WidgetKit.** Appen (`App/`) är bara en minimal container med en
   förhandsvisning — allt intressant bor i widget-extensionen (`Widget/`).
-- **Interaktivitet via App Intents.** Knapparna ◀ / ▶ kör `ChangeMonthIntent`
-  direkt i widget-processen; WidgetKit laddar om vyn automatiskt efteråt.
-- **Tillstånd** (månads-offset) sparas i widget-processens egna `UserDefaults` —
-  ingen App Group behövs eftersom intents och timeline-providern kör i samma process.
+- **Interaktivitet via App Intents.** Knapparna ◀ / ▶ kör `ChangeMonthIntent` och
+  varje dagcell kör `SelectDayIntent` direkt i widget-processen; WidgetKit laddar
+  om vyn automatiskt efteråt. Att dagarna är knappar gör också att tryck i
+  kalendern inte öppnar appen (det gör bara tryck på ytor utanför knapparna —
+  ett WidgetKit-beteende som inte går att stänga av).
+- **Tillstånd** (månads-offset och markering) sparas i widget-processens egna
+  `UserDefaults` — ingen App Group behövs eftersom intents och timeline-providern
+  kör i samma process. Månadsbläddringen nollställs vid midnatt; markeringen
+  ligger kvar tills den rensas.
 - **Timeline:** en enda entry med uppdatering vid nästa midnatt (`.after`), då
   dagens-markeringen flyttas och eventuell bläddring nollställs.
 - **Kalendermatematik** (`Shared/CalendarMath.swift`) använder `Calendar(identifier: .iso8601)`,
