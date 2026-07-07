@@ -12,7 +12,9 @@
 		42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */; };
 		5DAD2A6EADD7E8E890FC870C /* CalendarMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */; };
 		5EF077E641D127469F8D99B8 /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */; };
+		6ACB54D1B2AE8FA7F4686FD3 /* SwedishHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CC934E06286758A29825CB /* SwedishHolidays.swift */; };
 		717313D46EE5EA82DB31B34F /* KalvenderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DA78706E5316D7CCAFE40 /* KalvenderWidgetBundle.swift */; };
+		79C39E5240C0CD64907A842E /* SwedishHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CC934E06286758A29825CB /* SwedishHolidays.swift */; };
 		9B4101816DA9B35DC3B99EF2 /* CalendarMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */; };
 		AB47AD1668AB341006BB5F46 /* MonthOffsetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FE15AB404C576A02FD2A3B /* MonthOffsetStore.swift */; };
 		CD6EEF129AB4B76CD6D594C6 /* KalvenderWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAB8364920AAF3334A79FFE5 /* KalvenderWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -48,6 +50,7 @@
 		1B06EE1AB4F083541F57B7C0 /* KalvenderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalvenderApp.swift; sourceTree = "<group>"; };
 		1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMath.swift; sourceTree = "<group>"; };
 		3E83658388201633F206D418 /* Kalvender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kalvender.entitlements; sourceTree = "<group>"; };
+		48CC934E06286758A29825CB /* SwedishHolidays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedishHolidays.swift; sourceTree = "<group>"; };
 		75A325A818F1115C697A0E8A /* KalvenderWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KalvenderWidget.entitlements; sourceTree = "<group>"; };
 		7CB7DB405BF8B17D4096E27C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7EF7D1D9453815580FFFCE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */,
+				48CC934E06286758A29825CB /* SwedishHolidays.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -206,6 +210,7 @@
 				717313D46EE5EA82DB31B34F /* KalvenderWidgetBundle.swift in Sources */,
 				AB47AD1668AB341006BB5F46 /* MonthOffsetStore.swift in Sources */,
 				42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */,
+				6ACB54D1B2AE8FA7F4686FD3 /* SwedishHolidays.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +221,7 @@
 				5DAD2A6EADD7E8E890FC870C /* CalendarMath.swift in Sources */,
 				DE59935048F9AB97C0AD910B /* ContentView.swift in Sources */,
 				2EFE9BF56C582C3D1F4916F3 /* KalvenderApp.swift in Sources */,
+				79C39E5240C0CD64907A842E /* SwedishHolidays.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

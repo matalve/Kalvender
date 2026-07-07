@@ -53,10 +53,13 @@ struct CalendarWidgetView: View {
                     .font(labelFont)
                     .foregroundStyle(.tertiary)
                 ForEach(entry.grid.weekdaySymbols.indices, id: \.self) { index in
+                    // Sista kolumnen är söndag (ISO 8601: måndag först).
                     Text(entry.grid.weekdaySymbols[index])
                         .font(labelFont)
                         .fontWeight(.medium)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(index == 6
+                            ? AnyShapeStyle(.red.opacity(0.8))
+                            : AnyShapeStyle(.secondary))
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -85,13 +88,7 @@ struct CalendarWidgetView: View {
                 .font(dayFont)
                 .monospacedDigit()
                 .fontWeight(day.isToday || day.isSelectionEdge ? .bold : .regular)
-                .foregroundStyle(day.isSelectionEdge
-                    ? AnyShapeStyle(.white)
-                    : day.isToday
-                        ? AnyShapeStyle(.tint)
-                        : day.isInMonth
-                            ? AnyShapeStyle(.primary)
-                            : AnyShapeStyle(.tertiary))
+                .foregroundStyle(textStyle(for: day))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background {
                     ZStack {
@@ -114,6 +111,25 @@ struct CalendarWidgetView: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+    }
+
+    // Färgprioritet: markerings-ändpunkt (vit på accent) > röd dag >
+    // afton (orange) > idag (accent) > vanlig. Dagar utanför månaden får
+    // nedtonade varianter av samma färger.
+    private func textStyle(for day: MonthGrid.Day) -> AnyShapeStyle {
+        if day.isSelectionEdge {
+            return AnyShapeStyle(.white)
+        }
+        if day.isRedDay {
+            return AnyShapeStyle(.red.opacity(day.isInMonth ? 1 : 0.35))
+        }
+        if day.isEve {
+            return AnyShapeStyle(.orange.opacity(day.isInMonth ? 1 : 0.35))
+        }
+        if day.isToday {
+            return AnyShapeStyle(.tint)
+        }
+        return day.isInMonth ? AnyShapeStyle(.primary) : AnyShapeStyle(.tertiary)
     }
 
     // Sammanfattning av markeringen: veckodag + veckonummer för ett enskilt
@@ -159,7 +175,11 @@ struct CalendarWidgetView: View {
         formatter.setLocalizedDateFormatFromTemplate(
             family == .systemLarge ? "EEEE d MMMM" : "EEE d MMM")
         let week = calendar.component(.weekOfYear, from: start)
-        return "\(formatter.string(from: start).localizedCapitalized) · v. \(week)"
+        var summary = "\(formatter.string(from: start).localizedCapitalized) · v. \(week)"
+        if let holiday = SwedishHolidays.name(for: start, calendar: calendar) {
+            summary += " · \(holiday)"
+        }
+        return summary
     }
 
     private var labelFont: Font {

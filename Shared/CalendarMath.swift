@@ -17,6 +17,12 @@ struct MonthGrid {
         let isSelectionEdge: Bool
         /// Ligger inom ett komplett markerat intervall, inklusive kanterna.
         let isInSelection: Bool
+        /// Röd dag: söndag eller svensk helgdag.
+        let isRedDay: Bool
+        /// De facto-afton (jul-, nyårs- eller midsommarafton).
+        let isEve: Bool
+        /// Helgdagens/aftonens namn, om dagen har ett.
+        let holidayName: String?
         var id: Date { date }
     }
 
@@ -68,6 +74,17 @@ struct MonthGrid {
         let leadingDays = (weekdayOfFirst - firstWeekday + 7) % 7
         var cursor = calendar.date(byAdding: .day, value: -leadingDays, to: monthStart)!
 
+        // Gridden kan spänna över ett årsskifte, så slå upp helgdagar för
+        // båda årtalen den rör vid.
+        var redDays: [Date: String] = [:]
+        var eves: [Date: String] = [:]
+        let lastDay = calendar.date(byAdding: .day, value: 41, to: cursor)!
+        for year in Set([calendar.component(.year, from: cursor),
+                         calendar.component(.year, from: lastDay)]) {
+            redDays.merge(SwedishHolidays.redDays(year: year, calendar: calendar)) { a, _ in a }
+            eves.merge(SwedishHolidays.eves(year: year, calendar: calendar)) { a, _ in a }
+        }
+
         var weeks: [Week] = []
         for _ in 0..<6 {
             let weekNumber = calendar.component(.weekOfYear, from: cursor)
@@ -82,13 +99,18 @@ struct MonthGrid {
                 } else {
                     isInSelection = false
                 }
+                let redName = redDays[cursor]
+                let eveName = eves[cursor]
                 days.append(Day(
                     date: cursor,
                     number: calendar.component(.day, from: cursor),
                     isInMonth: calendar.isDate(cursor, equalTo: monthStart, toGranularity: .month),
                     isToday: calendar.isDate(cursor, inSameDayAs: startOfToday),
                     isSelectionEdge: isEdge,
-                    isInSelection: isInSelection))
+                    isInSelection: isInSelection,
+                    isRedDay: redName != nil || calendar.component(.weekday, from: cursor) == 1,
+                    isEve: eveName != nil,
+                    holidayName: redName ?? eveName))
                 cursor = calendar.date(byAdding: .day, value: 1, to: cursor)!
             }
             weeks.append(Week(

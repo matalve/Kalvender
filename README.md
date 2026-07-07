@@ -27,6 +27,11 @@ för att snabbt se vilken veckodag ett datum infaller på och vilket veckonummer
   senare dag för att markera hela intervallet (visar antal dagar och nätter).
   Tryck på ✕ eller på startdatumet igen för att rensa. Intervall kan sträcka sig
   över månadsgränser. Dagens datum visas som en ring; fylld cirkel är markeringen.
+- **Svenska röda dagar** visas i rött (söndagar och helgdagar) och de facto-aftnarna
+  — midsommar-, jul- och nyårsafton — i orange. Allt beräknas lokalt (påsken via
+  computus, midsommar/alla helgons dag via veckodagsregler); ingen kalenderdata
+  hämtas. Markerar man en helgdag visas namnet i raden under kalendern, t.ex.
+  ”Lördag 20 juni · v. 25 · Midsommardagen”.
 - Bläddringen nollställs automatiskt vid midnatt, så widgeten vaknar alltid på rätt månad.
 - Stödjer widgetstorlekarna medium och stor, ljust/mörkt läge och systemets tonade widgetlägen.
 - Inga behörigheter, ingen nätverksåtkomst, inga händelser.

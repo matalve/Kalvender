@@ -72,9 +72,13 @@ struct ContentView: View {
                                 .fontWeight(day.isToday ? .bold : .regular)
                                 .foregroundStyle(day.isToday
                                     ? AnyShapeStyle(.white)
-                                    : day.isInMonth
-                                        ? AnyShapeStyle(.primary)
-                                        : AnyShapeStyle(.tertiary))
+                                    : day.isRedDay
+                                        ? AnyShapeStyle(.red.opacity(day.isInMonth ? 1 : 0.35))
+                                        : day.isEve
+                                            ? AnyShapeStyle(.orange.opacity(day.isInMonth ? 1 : 0.35))
+                                            : day.isInMonth
+                                                ? AnyShapeStyle(.primary)
+                                                : AnyShapeStyle(.tertiary))
                                 .frame(width: 30, height: 30)
                                 .background {
                                     if day.isToday {
