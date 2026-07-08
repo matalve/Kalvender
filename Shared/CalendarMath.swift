@@ -41,15 +41,24 @@ struct MonthGrid {
     let weeks: [Week]
     let isCurrentMonth: Bool
 
+    /// Kalender med systemets locale — räcker för ren datummatematik
+    /// (dygnsjämförelser m.m.) som är locale-oberoende.
     static var calendar: Calendar {
+        calendar(for: .autoupdatingCurrent)
+    }
+
+    /// Kalender för visning: locale styr månadsnamn, veckodagsbokstäver
+    /// och datumformat. Veckoreglerna är alltid ISO 8601 oavsett locale.
+    static func calendar(for locale: Locale) -> Calendar {
         var calendar = Calendar(identifier: .iso8601)
-        calendar.locale = .autoupdatingCurrent
+        calendar.locale = locale
         return calendar
     }
 
     init(monthOffset: Int, today: Date = .now,
-         selectionStart: Date? = nil, selectionEnd: Date? = nil) {
-        let calendar = Self.calendar
+         selectionStart: Date? = nil, selectionEnd: Date? = nil,
+         locale: Locale = .autoupdatingCurrent) {
+        let calendar = Self.calendar(for: locale)
         let startOfToday = calendar.startOfDay(for: today)
         let selStart = selectionStart.map { calendar.startOfDay(for: $0) }
         let selEnd = selectionEnd.map { calendar.startOfDay(for: $0) }

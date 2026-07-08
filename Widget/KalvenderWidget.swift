@@ -6,39 +6,48 @@ struct CalendarEntry: TimelineEntry {
     let grid: MonthGrid
     var selectionStart: Date?
     var selectionEnd: Date?
+    var language: WidgetLanguage = .english
 }
 
-struct CalendarProvider: TimelineProvider {
+struct CalendarProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> CalendarEntry {
         CalendarEntry(date: .now, grid: MonthGrid(monthOffset: 0))
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (CalendarEntry) -> Void) {
-        completion(CalendarEntry(date: .now, grid: MonthGrid(monthOffset: 0)))
+    func snapshot(for configuration: ConfigurationIntent, in context: Context) async -> CalendarEntry {
+        entry(for: configuration)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<CalendarEntry>) -> Void) {
-        let now = Date.now
-        let entry = CalendarEntry(
-            date: now,
-            grid: MonthGrid(
-                monthOffset: MonthOffsetStore.currentOffset(today: now), today: now,
-                selectionStart: SelectionStore.start, selectionEnd: SelectionStore.end),
-            selectionStart: SelectionStore.start,
-            selectionEnd: SelectionStore.end)
-
+    func timeline(for configuration: ConfigurationIntent, in context: Context) async -> Timeline<CalendarEntry> {
         // Inget ändras förrän datumet slår över, så en enda entry räcker;
         // vid midnatt begärs en ny timeline och dagens-markeringen flyttas.
         let calendar = MonthGrid.calendar
         let nextMidnight = calendar.date(
-            byAdding: .day, value: 1, to: calendar.startOfDay(for: now))!
-        completion(Timeline(entries: [entry], policy: .after(nextMidnight)))
+            byAdding: .day, value: 1, to: calendar.startOfDay(for: .now))!
+        return Timeline(entries: [entry(for: configuration)], policy: .after(nextMidnight))
+    }
+
+    private func entry(for configuration: ConfigurationIntent) -> CalendarEntry {
+        let now = Date.now
+        return CalendarEntry(
+            date: now,
+            grid: MonthGrid(
+                monthOffset: MonthOffsetStore.currentOffset(today: now), today: now,
+                selectionStart: SelectionStore.start, selectionEnd: SelectionStore.end,
+                locale: configuration.language.locale),
+            selectionStart: SelectionStore.start,
+            selectionEnd: SelectionStore.end,
+            language: configuration.language)
     }
 }
 
 struct KalvenderWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "KalvenderWidget", provider: CalendarProvider()) { entry in
+        AppIntentConfiguration(
+            kind: "KalvenderWidget",
+            intent: ConfigurationIntent.self,
+            provider: CalendarProvider()
+        ) { entry in
             CalendarWidgetView(entry: entry)
         }
         .configurationDisplayName("Kalvender")

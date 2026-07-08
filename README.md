@@ -33,6 +33,10 @@ för att snabbt se vilken veckodag ett datum infaller på och vilket veckonummer
   hämtas. Markerar man en helgdag visas namnet i raden under kalendern, t.ex.
   ”Lördag 20 juni · v. 25 · Midsommardagen”.
 - Bläddringen nollställs automatiskt vid midnatt, så widgeten vaknar alltid på rätt månad.
+- **Språkinställning per widget**: högerklicka på widgeten → *Redigera widget* →
+  välj English (standard) eller Svenska. Styr månadsnamn, veckodagsbokstäver,
+  datumformat och etiketter ("v."/"wk"). Veckonumren är ISO 8601 och de röda
+  dagarna svenska oavsett språk. Två widgets kan ha olika språk.
 - Stödjer widgetstorlekarna medium och stor, ljust/mörkt läge och systemets tonade widgetlägen.
 - Inga behörigheter, ingen nätverksåtkomst, inga händelser.
 
@@ -51,6 +55,11 @@ Kräver Xcode 16 eller senare.
 
 - **SwiftUI + WidgetKit.** Appen (`App/`) är bara en minimal container med en
   förhandsvisning — allt intressant bor i widget-extensionen (`Widget/`).
+- **Inställningar via `AppIntentConfiguration`.** `ConfigurationIntent` deklarerar
+  parametrarna (idag: språk) och macOS renderar panelen automatiskt. Ingen
+  "systemspråk"-option — strängtabellen i `ConfigurationIntent.swift` täcker exakt
+  de språk som erbjuds, så ett systemspråk utanför listan kan aldrig ge en
+  halvöversatt widget. En framtida regioninställning för helgdagar hakar i här.
 - **Interaktivitet via App Intents.** Knapparna ◀ / ▶ kör `ChangeMonthIntent` och
   varje dagcell kör `SelectDayIntent` direkt i widget-processen; WidgetKit laddar
   om vyn automatiskt efteråt. Att dagarna är knappar gör också att tryck i

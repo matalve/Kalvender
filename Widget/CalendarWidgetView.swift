@@ -49,7 +49,7 @@ struct CalendarWidgetView: View {
     private var monthGrid: some View {
         Grid(horizontalSpacing: 2, verticalSpacing: 2) {
             GridRow {
-                Text("v.")
+                Text(entry.language.strings.weekLabel)
                     .font(labelFont)
                     .foregroundStyle(.tertiary)
                 ForEach(entry.grid.weekdaySymbols.indices, id: \.self) { index in
@@ -155,7 +155,8 @@ struct CalendarWidgetView: View {
 
     private var selectionSummary: String? {
         guard let start = entry.selectionStart else { return nil }
-        let calendar = MonthGrid.calendar
+        let strings = entry.language.strings
+        let calendar = MonthGrid.calendar(for: entry.language.locale)
         let formatter = DateFormatter()
         formatter.calendar = calendar
         formatter.locale = calendar.locale
@@ -168,14 +169,15 @@ struct CalendarWidgetView: View {
             let nights = days - 1
             let range = "\(formatter.string(from: start)) – \(formatter.string(from: end))"
             if family == .systemLarge {
-                return "\(range) · \(days) dagar, \(nights) \(nights == 1 ? "natt" : "nätter")"
+                let nightsWord = nights == 1 ? strings.night : strings.nights
+                return "\(range) · \(days) \(strings.days), \(nights) \(nightsWord)"
             }
-            return "\(range) · \(days) dgr"
+            return "\(range) · \(days) \(strings.daysShort)"
         }
         formatter.setLocalizedDateFormatFromTemplate(
             family == .systemLarge ? "EEEE d MMMM" : "EEE d MMM")
         let week = calendar.component(.weekOfYear, from: start)
-        var summary = "\(formatter.string(from: start).localizedCapitalized) · v. \(week)"
+        var summary = "\(formatter.string(from: start).localizedCapitalized) · \(strings.weekLabel) \(week)"
         if let holiday = SwedishHolidays.name(for: start, calendar: calendar) {
             summary += " · \(holiday)"
         }

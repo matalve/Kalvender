@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2640C141C7F2EF0D7C98FC24 /* ConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215B06EE9E03A2FA82F6775 /* ConfigurationIntent.swift */; };
 		27619DA0A95E6EEBA8EA641F /* KalvenderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */; };
 		2EFE9BF56C582C3D1F4916F3 /* KalvenderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B06EE1AB4F083541F57B7C0 /* KalvenderApp.swift */; };
 		42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */; };
@@ -58,6 +59,7 @@
 		A5BA4DD6D709F3FF4BBA5691 /* Kalvender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalvender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E4BBD1341FAAA15DE065BD /* ChangeMonthIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMonthIntent.swift; sourceTree = "<group>"; };
 		A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
+		C215B06EE9E03A2FA82F6775 /* ConfigurationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationIntent.swift; sourceTree = "<group>"; };
 		C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionStore.swift; sourceTree = "<group>"; };
 		DF3DA78706E5316D7CCAFE40 /* KalvenderWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalvenderWidgetBundle.swift; sourceTree = "<group>"; };
 		ED5C0AD790CCB720FD0AE9B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */,
 				A8E4BBD1341FAAA15DE065BD /* ChangeMonthIntent.swift */,
+				C215B06EE9E03A2FA82F6775 /* ConfigurationIntent.swift */,
 				7EF7D1D9453815580FFFCE0B /* Info.plist */,
 				75A325A818F1115C697A0E8A /* KalvenderWidget.entitlements */,
 				F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */,
@@ -206,6 +209,7 @@
 				9B4101816DA9B35DC3B99EF2 /* CalendarMath.swift in Sources */,
 				5EF077E641D127469F8D99B8 /* CalendarWidgetView.swift in Sources */,
 				F76EB321FF39CB42EECEDB96 /* ChangeMonthIntent.swift in Sources */,
+				2640C141C7F2EF0D7C98FC24 /* ConfigurationIntent.swift in Sources */,
 				27619DA0A95E6EEBA8EA641F /* KalvenderWidget.swift in Sources */,
 				717313D46EE5EA82DB31B34F /* KalvenderWidgetBundle.swift in Sources */,
 				AB47AD1668AB341006BB5F46 /* MonthOffsetStore.swift in Sources */,
