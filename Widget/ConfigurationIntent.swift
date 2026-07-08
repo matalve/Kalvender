@@ -9,7 +9,7 @@ struct ConfigurationIntent: WidgetConfigurationIntent {
     @Parameter(title: "Language", default: .english)
     var language: WidgetLanguage
 
-    @Parameter(title: "Holidays", default: .sweden)
+    @Parameter(title: "Holidays", default: .noHolidays)
     var holidayRegion: HolidayRegion
 }
 

@@ -10,7 +10,7 @@ struct ContentView: View {
         VStack(spacing: 20) {
             monthPreview
             Divider()
-            Text("Lägg till widgeten: högerklicka på skrivbordet och välj ”Redigera widgetar…”, sök sedan efter Kalvender.")
+            Text("Add the widget: right-click the desktop, choose “Edit Widgets…”, then search for Kalvender.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

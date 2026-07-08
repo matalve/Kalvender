@@ -1,61 +1,68 @@
+<p align="center">
+  <img src="Shared/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width="128" alt="Kalvender icon">
+</p>
+
 # Kalvender
 
-En enkel kalender-widget för macOS: månadsvy med veckonummer och röda dagar —
-inga händelser, inga behörigheter, ingen nätverksåtkomst.
+A simple macOS calendar widget: month view with ISO week numbers and public
+holidays — no events, no permissions, no network access.
 
-Kalvender svarar på frågor som *"vilken veckodag är den 24:e?"*, *"vilket
-veckonummer är det då?"* och *"hur många nätter blir det 17–19 juli?"* — direkt
-på skrivbordet, utan att blanda in kalenderkonton eller händelser.
+Kalvender answers questions like *"what weekday is the 24th?"*, *"which week
+number is that?"* and *"how many nights is July 17–19?"* — right on your
+desktop, without involving calendar accounts or events.
 
 ```
-  ◀      Juli 2026      ▶
-  v.  M   T   O   T   F   L   S
+  ◀      July 2026      ▶
+  wk  M   T   W   T   F   S   S
   27          1   2   3   4   5
   28  6   7   8   9  10  11  12
   29 13  14  15 (16) 17  18  19
   30 20  21  22  23  24  25  26
   31 27  28  29  30  31
-      Tor 16 juli · v. 29    ✕
+      Thu 16 July · wk 29    ✕
 ```
 
-## Funktioner
+## Features
 
-- **Månadsvy** med dagens datum markerat med en ring i accentfärgen.
-- **Veckonummer** enligt ISO 8601 (måndag första veckodag, "första torsdagen"-
-  regeln) — korrekta även runt årsskiften, där 29–31 december kan vara vecka 1
-  och 1–3 januari vecka 52/53.
-- **Bläddra mellan månader** med ◀ / ▶. Tryck på månadstiteln för att hoppa
-  tillbaka till idag; titeln visas i accentfärg när du är på en annan månad.
-  Bläddringen nollställs automatiskt vid midnatt.
-- **Markera datum eller intervall**, hotellboknings-stil: tryck på en dag för
-  att markera den — raden under kalendern visar veckodag, veckonummer och
-  eventuell helgdag. Tryck på en senare dag för att markera intervallet (visar
-  antal dagar och nätter). Tryck på ✕ eller startdatumet igen för att rensa.
-  Intervall kan sträcka sig över månadsgränser och ligger kvar tills de rensas.
-- **Röda dagar för 13 länder**: helgdagar och söndagar i rött, de facto-aftnar
-  (julafton, Heiligabend, Nochebuena, Grundlovsdag m.fl.) i orange.
-- **Två inställningar per widget** (högerklick → *Redigera "Kalvender"*):
-  - **Language:** English (standard), Svenska eller Español — styr månadsnamn,
-    veckodagsbokstäver, datumformat och etiketter ("wk"/"v."/"sem.").
-  - **Holidays:** Sverige (standard), Danmark, Finland, Norge, Frankrike,
-    Italien, Nederländerna, Peru, Portugal, Spanien, Storbritannien, Tyskland,
-    USA — eller None. Oberoende av språket: svenska + amerikanska helgdagar
-    är en giltig kombination.
-- Storlekarna medium och stor, ljust/mörkt läge, systemets tonade widgetlägen.
-- Två widgets kan ha olika inställningar (t.ex. en svensk och en spansk).
+- **Month view** with today marked by a ring in the accent color.
+- **Week numbers** per ISO 8601 (Monday first, "first Thursday" rule) —
+  correct even across year boundaries, where Dec 29–31 can be week 1 and
+  Jan 1–3 week 52/53.
+- **Step between months** with ◀ / ▶. Tap the month title to jump back to
+  today; the title turns accent-colored when you're on another month.
+  Browsing resets automatically at midnight.
+- **Select a date or a range**, hotel-booking style: tap a day to select it —
+  the row below the calendar shows its weekday, week number and any holiday.
+  Tap a later day to select the whole range (shows the number of days and
+  nights). Tap ✕, or the start date again, to clear. Ranges may span month
+  boundaries and persist until cleared.
+- **Public holidays for 13 countries**: holidays and Sundays in red, de facto
+  eves (Christmas Eve, Heiligabend, Nochebuena, Grundlovsdag, Midsummer Eve
+  and friends) in orange.
+- **Two per-widget settings** (right-click → *Edit "Kalvender"*):
+  - **Language:** English (default), Svenska or Español — controls month
+    names, weekday letters, date formats and labels ("wk"/"v."/"sem.").
+  - **Holidays:** None (default), or Sweden, Denmark, Finland, Norway,
+    France, Germany, Italy, Netherlands, Peru, Portugal, Spain, United
+    Kingdom, United States. Independent of the language setting — Swedish
+    with US holidays is a valid combination.
+- Medium and large widget sizes, light/dark mode, and the system's tinted
+  widget rendering modes.
+- Multiple widgets can have different settings (e.g. one Swedish, one Spanish).
 
 ## Installation
 
-Kräver macOS 15 eller senare samt Xcode 16 eller senare för att bygga.
+Requires macOS 15 or later, and Xcode 16 or later to build.
 
-1. Öppna `Kalvender.xcodeproj` i Xcode.
-2. Välj ditt utvecklarteam under **Signing & Capabilities** för båda targets
-   (`Kalvender` och `KalvenderWidget`). Ett gratis Apple-ID räcker lokalt.
-3. Kör appen en gång (⌘R) — det registrerar widgeten hos systemet.
-4. Högerklicka på skrivbordet → **Redigera widgetar…** → sök efter
-   **Kalvender** och lägg till.
+1. Open `Kalvender.xcodeproj` in Xcode.
+2. Select your development team under **Signing & Capabilities** for both
+   targets (`Kalvender` and `KalvenderWidget`). A free Apple ID is enough
+   for local use.
+3. Run the app once (⌘R) — this registers the widget with the system.
+4. Right-click the desktop → **Edit Widgets…** → search for **Kalvender**
+   and add it.
 
-Eller från terminalen:
+Or from the terminal:
 
 ```sh
 xcodebuild -project Kalvender.xcodeproj -scheme Kalvender \
@@ -64,54 +71,55 @@ cp -R build/DerivedData/Build/Products/Debug/Kalvender.app /Applications/
 open /Applications/Kalvender.app
 ```
 
-## Arkitektur
+## Architecture
 
-SwiftUI + WidgetKit. Appen (`App/`) är bara en minimal container med en
-förhandsvisning — allt intressant bor i widget-extensionen (`Widget/`) och
-den delade logiken (`Shared/`).
+SwiftUI + WidgetKit. The app (`App/`) is just a minimal container with a
+preview — everything interesting lives in the widget extension (`Widget/`)
+and the shared logic (`Shared/`).
 
-- **Ren kalendermatematik.** `Shared/CalendarMath.swift` bygger månadsgridden
-  med `Calendar(identifier: .iso8601)`. `Shared/Holidays.swift` beräknar alla
-  länders helgdagar lokalt: påskbaserade via computus (den anonyma gregorianska
-  algoritmen), veckodagsstyrda via "n:te veckodagen"-regler, resten fasta
-  datum. Ingen kalenderdata hämtas någonsin. Endast landsomfattande helgdagar;
-  regionala dagar och "observed"-flyttar (USA/UK) ingår inte; Storbritannien
-  följer England & Wales.
-- **Interaktivitet via App Intents.** Knapparna ◀ / ▶ kör `ChangeMonthIntent`
-  och varje dagcell `SelectDayIntent`, direkt i widget-processen. Det gör
-  också att tryck i kalendern inte öppnar appen — bara tryck på ytor utanför
-  knapparna gör det (ett WidgetKit-beteende som inte går att stänga av).
-- **Inställningar via `AppIntentConfiguration`.** `ConfigurationIntent`
-  deklarerar parametrarna; macOS renderar panelen automatiskt. Ingen
-  "systemspråk"-option med avsikt: strängtabellen täcker exakt de språk som
-  erbjuds, så ett systemspråk utanför listan kan aldrig ge en halvöversatt
-  widget.
-- **Tillstånd** (månadsoffset och markering) ligger i widget-processens egna
-  `UserDefaults` — ingen App Group behövs eftersom intents och timeline-
-  providern kör i samma process. Tillståndet delas mellan widget-instanser.
-- **Timeline:** en enda entry med uppdatering vid nästa midnatt, då
-  dagens-markeringen flyttas och månadsbläddringen nollställs.
+- **Pure calendar math.** `Shared/CalendarMath.swift` builds the month grid
+  with `Calendar(identifier: .iso8601)`. `Shared/Holidays.swift` computes
+  every country's holidays locally: Easter-based ones via computus (the
+  anonymous Gregorian algorithm), weekday-ruled ones via "nth weekday of the
+  month" rules, the rest fixed dates. No calendar data is ever fetched.
+  Nationwide holidays only — regional days and "observed" shifts (US/UK) are
+  not included; the United Kingdom follows England & Wales.
+- **Interactivity via App Intents.** The ◀ / ▶ buttons run `ChangeMonthIntent`
+  and every day cell runs `SelectDayIntent`, directly in the widget process.
+  This also means taps inside the calendar don't open the app — only taps
+  outside the buttons do (a WidgetKit behavior that cannot be disabled).
+- **Settings via `AppIntentConfiguration`.** `ConfigurationIntent` declares
+  the parameters; macOS renders the panel automatically. There is
+  deliberately no "system language" option: the string table covers exactly
+  the languages offered, so a system language outside the list can never
+  produce a half-translated widget.
+- **State** (month offset and selection) lives in the widget process's own
+  `UserDefaults` — no App Group is needed since the intents and the timeline
+  provider run in the same process. State is shared between widget instances.
+- **Timeline:** a single entry refreshed at the next midnight, which moves
+  the today marker and resets month browsing.
 
-### Utveckling
+### Development notes
 
-Projektfilen genereras med [XcodeGen](https://github.com/yonaskolb/XcodeGen)
-från `project.yml`; den genererade `Kalvender.xcodeproj` är incheckad så det
-räcker att öppna projektet. Efter ändringar i `project.yml` — och när
-**nya källfiler** läggs till (de listas explicit i projektfilen): kör
+The Xcode project is generated with
+[XcodeGen](https://github.com/yonaskolb/XcodeGen) from `project.yml`; the
+generated `Kalvender.xcodeproj` is checked in, so just opening the project
+works. After changing `project.yml` — and whenever **new source files** are
+added (they are listed explicitly in the project file) — run
 `xcodegen generate`.
 
-Vid ändringar i widgetens konfigurationsschema (nya inställningar, ändrade
-enum-fall): bumpa `MARKETING_VERSION`/`CURRENT_PROJECT_VERSION` i `project.yml`
-och starta om widgettjänsten (`killall chronod`), annars kan placerade widgets
-frysa på en cachad beskrivning av det gamla schemat.
+When the widget's configuration schema changes (new settings, changed enum
+cases): bump `MARKETING_VERSION`/`CURRENT_PROJECT_VERSION` in `project.yml`
+and restart the widget service (`killall chronod`), otherwise placed widgets
+may freeze on a cached descriptor of the old schema.
 
-Appikonen genereras programmatiskt; masterbilden är
+The app icon is generated programmatically; the master image is
 `Shared/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png` (1024×1024)
-och övriga storlekar är nedskalningar av den.
+and the other sizes are downscales of it.
 
-## Licens
+## License
 
-[MIT](LICENSE) — kort sammanfattat: vem som helst får använda, kopiera,
-ändra och vidaredistribuera koden, även kommersiellt, så länge licens- och
-upphovsrättstexten följer med. Programvaran levereras i befintligt skick,
-utan garantier och utan ansvar för upphovspersonen.
+[MIT](LICENSE) — in short: anyone may use, copy, modify and redistribute the
+code, commercially too, as long as the copyright and license text are
+preserved. The software is provided as-is, with no warranty and no liability
+for the author.

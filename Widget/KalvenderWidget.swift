@@ -7,7 +7,7 @@ struct CalendarEntry: TimelineEntry {
     var selectionStart: Date?
     var selectionEnd: Date?
     var language: WidgetLanguage = .english
-    var region: HolidayRegion = .sweden
+    var region: HolidayRegion = .noHolidays
 }
 
 struct CalendarProvider: AppIntentTimelineProvider {
@@ -54,7 +54,7 @@ struct KalvenderWidget: Widget {
             CalendarWidgetView(entry: entry)
         }
         .configurationDisplayName("Kalvender")
-        .description("Månadsvy med veckonummer — inga händelser, bara kalendern.")
+        .description("Month view with week numbers — no events, just the calendar.")
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

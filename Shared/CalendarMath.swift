@@ -58,7 +58,7 @@ struct MonthGrid {
     init(monthOffset: Int, today: Date = .now,
          selectionStart: Date? = nil, selectionEnd: Date? = nil,
          locale: Locale = .autoupdatingCurrent,
-         region: HolidayRegion = .sweden) {
+         region: HolidayRegion = .noHolidays) {
         let calendar = Self.calendar(for: locale)
         let startOfToday = calendar.startOfDay(for: today)
         let selStart = selectionStart.map { calendar.startOfDay(for: $0) }
