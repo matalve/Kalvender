@@ -21,6 +21,7 @@
 		CD6EEF129AB4B76CD6D594C6 /* KalvenderWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAB8364920AAF3334A79FFE5 /* KalvenderWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DE59935048F9AB97C0AD910B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB7DB405BF8B17D4096E27C /* ContentView.swift */; };
 		F76EB321FF39CB42EECEDB96 /* ChangeMonthIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4BBD1341FAAA15DE065BD /* ChangeMonthIntent.swift */; };
+		F9C76D65E66B5C88CEF55121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7813697E7F34CE75289ADFAA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMath.swift; sourceTree = "<group>"; };
 		3E83658388201633F206D418 /* Kalvender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kalvender.entitlements; sourceTree = "<group>"; };
 		75A325A818F1115C697A0E8A /* KalvenderWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KalvenderWidget.entitlements; sourceTree = "<group>"; };
+		7813697E7F34CE75289ADFAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CB7DB405BF8B17D4096E27C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7EF7D1D9453815580FFFCE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		98FE15AB404C576A02FD2A3B /* MonthOffsetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthOffsetStore.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		3D176973CC5AF2F6D941D90E /* App */ = {
 			isa = PBXGroup;
 			children = (
+				7813697E7F34CE75289ADFAA /* Assets.xcassets */,
 				7CB7DB405BF8B17D4096E27C /* ContentView.swift */,
 				ED5C0AD790CCB720FD0AE9B6 /* Info.plist */,
 				3E83658388201633F206D418 /* Kalvender.entitlements */,
@@ -131,6 +134,7 @@
 			buildConfigurationList = BC59EB4D8BA6619D2A877898 /* Build configuration list for PBXNativeTarget "Kalvender" */;
 			buildPhases = (
 				AAFBE14D387F49ABD123A28B /* Sources */,
+				9337B24E822536CB535F8129 /* Resources */,
 				D886CA9C0EC0A43FC4B2C3A3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -200,6 +204,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9337B24E822536CB535F8129 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C76D65E66B5C88CEF55121 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5442F53EE0ABB4C6E4C973DC /* Sources */ = {
@@ -291,7 +306,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = BPGW64RVGJ;
@@ -361,7 +376,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BPGW64RVGJ;
