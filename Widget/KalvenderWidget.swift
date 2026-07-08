@@ -7,6 +7,7 @@ struct CalendarEntry: TimelineEntry {
     var selectionStart: Date?
     var selectionEnd: Date?
     var language: WidgetLanguage = .english
+    var region: HolidayRegion = .sweden
 }
 
 struct CalendarProvider: AppIntentTimelineProvider {
@@ -34,10 +35,12 @@ struct CalendarProvider: AppIntentTimelineProvider {
             grid: MonthGrid(
                 monthOffset: MonthOffsetStore.currentOffset(today: now), today: now,
                 selectionStart: SelectionStore.start, selectionEnd: SelectionStore.end,
-                locale: configuration.language.locale),
+                locale: configuration.language.locale,
+                region: configuration.holidayRegion),
             selectionStart: SelectionStore.start,
             selectionEnd: SelectionStore.end,
-            language: configuration.language)
+            language: configuration.language,
+            region: configuration.holidayRegion)
     }
 }
 

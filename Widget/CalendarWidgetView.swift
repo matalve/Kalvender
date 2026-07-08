@@ -178,7 +178,7 @@ struct CalendarWidgetView: View {
             family == .systemLarge ? "EEEE d MMMM" : "EEE d MMM")
         let week = calendar.component(.weekOfYear, from: start)
         var summary = "\(formatter.string(from: start).localizedCapitalized) · \(strings.weekLabel) \(week)"
-        if let holiday = SwedishHolidays.name(for: start, calendar: calendar) {
+        if let holiday = entry.region.name(for: start, calendar: calendar) {
             summary += " · \(holiday)"
         }
         return summary

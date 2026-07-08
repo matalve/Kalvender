@@ -57,7 +57,8 @@ struct MonthGrid {
 
     init(monthOffset: Int, today: Date = .now,
          selectionStart: Date? = nil, selectionEnd: Date? = nil,
-         locale: Locale = .autoupdatingCurrent) {
+         locale: Locale = .autoupdatingCurrent,
+         region: HolidayRegion = .sweden) {
         let calendar = Self.calendar(for: locale)
         let startOfToday = calendar.startOfDay(for: today)
         let selStart = selectionStart.map { calendar.startOfDay(for: $0) }
@@ -90,8 +91,8 @@ struct MonthGrid {
         let lastDay = calendar.date(byAdding: .day, value: 41, to: cursor)!
         for year in Set([calendar.component(.year, from: cursor),
                          calendar.component(.year, from: lastDay)]) {
-            redDays.merge(SwedishHolidays.redDays(year: year, calendar: calendar)) { a, _ in a }
-            eves.merge(SwedishHolidays.eves(year: year, calendar: calendar)) { a, _ in a }
+            redDays.merge(region.redDays(year: year, calendar: calendar)) { a, _ in a }
+            eves.merge(region.eves(year: year, calendar: calendar)) { a, _ in a }
         }
 
         var weeks: [Week] = []

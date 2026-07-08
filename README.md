@@ -27,16 +27,22 @@ för att snabbt se vilken veckodag ett datum infaller på och vilket veckonummer
   senare dag för att markera hela intervallet (visar antal dagar och nätter).
   Tryck på ✕ eller på startdatumet igen för att rensa. Intervall kan sträcka sig
   över månadsgränser. Dagens datum visas som en ring; fylld cirkel är markeringen.
-- **Svenska röda dagar** visas i rött (söndagar och helgdagar) och de facto-aftnarna
-  — midsommar-, jul- och nyårsafton — i orange. Allt beräknas lokalt (påsken via
-  computus, midsommar/alla helgons dag via veckodagsregler); ingen kalenderdata
-  hämtas. Markerar man en helgdag visas namnet i raden under kalendern, t.ex.
-  ”Lördag 20 juni · v. 25 · Midsommardagen”.
+- **Röda dagar för 13 länder** (inställning per widget): Sverige (standard),
+  Danmark, Finland, Norge, Frankrike, Italien, Nederländerna, Peru, Portugal,
+  Spanien, Storbritannien, Tyskland och USA — eller inga alls. Helgdagar i rött
+  (söndagar alltid röda), de facto-aftnar i orange (t.ex. julafton, Heiligabend,
+  Nochebuena, Grundlovsdag). Allt beräknas lokalt (påsken via computus,
+  ”n:te veckodagen”-regler m.m.); ingen kalenderdata hämtas. Endast
+  landsomfattande helgdagar — regionala dagar och ”observed”-flyttar (USA/UK)
+  ingår inte; Storbritannien följer England & Wales. Markerar man en helgdag
+  visas namnet i raden under kalendern, t.ex. ”Lördag 20 juni · v. 25 ·
+  Midsommardagen”. Namnen står på landets eget språk.
 - Bläddringen nollställs automatiskt vid midnatt, så widgeten vaknar alltid på rätt månad.
 - **Språkinställning per widget**: högerklicka på widgeten → *Redigera widget* →
-  välj English (standard) eller Svenska. Styr månadsnamn, veckodagsbokstäver,
-  datumformat och etiketter ("v."/"wk"). Veckonumren är ISO 8601 och de röda
-  dagarna svenska oavsett språk. Två widgets kan ha olika språk.
+  välj English (standard), Svenska eller Español. Styr månadsnamn,
+  veckodagsbokstäver, datumformat och etiketter ("v."/"wk"/"sem."). Veckonumren
+  är ISO 8601 oavsett språk. Språk och helgdagsland är oberoende inställningar —
+  svenska + amerikanska helgdagar är en giltig kombination.
 - Stödjer widgetstorlekarna medium och stor, ljust/mörkt läge och systemets tonade widgetlägen.
 - Inga behörigheter, ingen nätverksåtkomst, inga händelser.
 
