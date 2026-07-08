@@ -10,6 +10,7 @@
 		2640C141C7F2EF0D7C98FC24 /* ConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215B06EE9E03A2FA82F6775 /* ConfigurationIntent.swift */; };
 		27619DA0A95E6EEBA8EA641F /* KalvenderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86A9C462E630F68D11B6A37 /* KalvenderWidget.swift */; };
 		2EFE9BF56C582C3D1F4916F3 /* KalvenderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B06EE1AB4F083541F57B7C0 /* KalvenderApp.swift */; };
+		309811DCF89FA330EB07AA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55031F79F2F381830E97097C /* Assets.xcassets */; };
 		42103ED1339F0A89C2F1ABFD /* SelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3018F8FD61AFDDB908D7340 /* SelectionStore.swift */; };
 		5DAD2A6EADD7E8E890FC870C /* CalendarMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */; };
 		5EF077E641D127469F8D99B8 /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99D0347E8B49244E642F8DB /* CalendarWidgetView.swift */; };
@@ -20,8 +21,8 @@
 		B1189A9E5E5FAE0E75255A58 /* Holidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C7FB37B31ACB037CBE135 /* Holidays.swift */; };
 		CD6EEF129AB4B76CD6D594C6 /* KalvenderWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAB8364920AAF3334A79FFE5 /* KalvenderWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DE59935048F9AB97C0AD910B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB7DB405BF8B17D4096E27C /* ContentView.swift */; };
+		EA22293D5C591AC3015808B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55031F79F2F381830E97097C /* Assets.xcassets */; };
 		F76EB321FF39CB42EECEDB96 /* ChangeMonthIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E4BBD1341FAAA15DE065BD /* ChangeMonthIntent.swift */; };
-		F9C76D65E66B5C88CEF55121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7813697E7F34CE75289ADFAA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +54,8 @@
 		1B06EE1AB4F083541F57B7C0 /* KalvenderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalvenderApp.swift; sourceTree = "<group>"; };
 		1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMath.swift; sourceTree = "<group>"; };
 		3E83658388201633F206D418 /* Kalvender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kalvender.entitlements; sourceTree = "<group>"; };
+		55031F79F2F381830E97097C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A325A818F1115C697A0E8A /* KalvenderWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KalvenderWidget.entitlements; sourceTree = "<group>"; };
-		7813697E7F34CE75289ADFAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CB7DB405BF8B17D4096E27C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7EF7D1D9453815580FFFCE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		98FE15AB404C576A02FD2A3B /* MonthOffsetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthOffsetStore.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		3D176973CC5AF2F6D941D90E /* App */ = {
 			isa = PBXGroup;
 			children = (
-				7813697E7F34CE75289ADFAA /* Assets.xcassets */,
 				7CB7DB405BF8B17D4096E27C /* ContentView.swift */,
 				ED5C0AD790CCB720FD0AE9B6 /* Info.plist */,
 				3E83658388201633F206D418 /* Kalvender.entitlements */,
@@ -120,6 +120,7 @@
 		4240C86D3B0A050B37B378FA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				55031F79F2F381830E97097C /* Assets.xcassets */,
 				1F6B3C857D3AE6A895BA302E /* CalendarMath.swift */,
 				005C7FB37B31ACB037CBE135 /* Holidays.swift */,
 			);
@@ -154,6 +155,7 @@
 			buildConfigurationList = 1A4AE5D7EE7C2E01A9CB2D56 /* Build configuration list for PBXNativeTarget "KalvenderWidget" */;
 			buildPhases = (
 				5442F53EE0ABB4C6E4C973DC /* Sources */,
+				94C38820F6FAFC4D0573F806 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -210,7 +212,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9C76D65E66B5C88CEF55121 /* Assets.xcassets in Resources */,
+				EA22293D5C591AC3015808B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94C38820F6FAFC4D0573F806 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				309811DCF89FA330EB07AA0B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -306,7 +317,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = BPGW64RVGJ;
@@ -345,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -376,7 +388,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BPGW64RVGJ;
