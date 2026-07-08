@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// Container-appens enda fönster: en levande förhandsvisning av kalendern
-/// och en instruktion om hur widgeten läggs till. Allt intressant bor i
-/// widget-extensionen.
+/// The container app's only window: a live preview of the calendar and an
+/// instruction for adding the widget. Everything interesting lives in the
+/// widget extension.
 struct ContentView: View {
     @State private var monthOffset = 0
 

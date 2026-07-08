@@ -1,10 +1,10 @@
 import Foundation
 
-/// Markerat datum eller datumintervall, hotellboknings-stil.
+/// The selected date or date range, hotel-booking style.
 ///
-/// Lagras liksom `MonthOffsetStore` i widget-processens egna `UserDefaults`.
-/// Markeringen är avsiktligt beständig över dygnsskiften — den rensas bara
-/// av användaren.
+/// Stored, like `MonthOffsetStore`, in the widget process's own
+/// `UserDefaults`. The selection deliberately survives midnight — it is
+/// only cleared by the user.
 enum SelectionStore {
     private static let startKey = "selectionStart"
     private static let endKey = "selectionEnd"
@@ -18,9 +18,9 @@ enum SelectionStore {
         read(endKey)
     }
 
-    /// Första trycket sätter start, andra trycket på ett senare datum sätter
-    /// slut, tryck på startdatumet igen rensar, ett tidigare datum flyttar
-    /// starten, och ett tryck när intervallet är komplett börjar om.
+    /// First tap sets the start, a second tap on a later date sets the end,
+    /// tapping the start date again clears, an earlier date moves the start,
+    /// and a tap while the range is complete starts over.
     static func handleTap(on date: Date) {
         let calendar = MonthGrid.calendar
         let day = calendar.startOfDay(for: date)

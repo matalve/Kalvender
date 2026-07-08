@@ -20,8 +20,9 @@ struct CalendarProvider: AppIntentTimelineProvider {
     }
 
     func timeline(for configuration: ConfigurationIntent, in context: Context) async -> Timeline<CalendarEntry> {
-        // Inget ändras förrän datumet slår över, så en enda entry räcker;
-        // vid midnatt begärs en ny timeline och dagens-markeringen flyttas.
+        // Nothing changes until the date rolls over, so a single entry is
+        // enough; at midnight a new timeline is requested and the today
+        // marker moves.
         let calendar = MonthGrid.calendar
         let nextMidnight = calendar.date(
             byAdding: .day, value: 1, to: calendar.startOfDay(for: .now))!

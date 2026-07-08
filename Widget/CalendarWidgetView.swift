@@ -18,8 +18,8 @@ struct CalendarWidgetView: View {
         HStack {
             stepButton(step: -1, symbol: "chevron.left")
             Spacer()
-            // Ett tryck på titeln hoppar tillbaka till innevarande månad.
-            // Accentfärgen på titeln signalerar att man inte är "hemma".
+            // Tapping the title jumps back to the current month. The accent
+            // color on the title signals that you're not "home".
             Button(intent: ChangeMonthIntent(step: 0)) {
                 Text(entry.grid.title)
                     .font(family == .systemLarge ? .headline : .subheadline)
@@ -53,7 +53,7 @@ struct CalendarWidgetView: View {
                     .font(labelFont)
                     .foregroundStyle(.tertiary)
                 ForEach(entry.grid.weekdaySymbols.indices, id: \.self) { index in
-                    // Sista kolumnen är söndag (ISO 8601: måndag först).
+                    // The last column is Sunday (ISO 8601: Monday first).
                     Text(entry.grid.weekdaySymbols[index])
                         .font(labelFont)
                         .fontWeight(.medium)
@@ -79,9 +79,9 @@ struct CalendarWidgetView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    // Varje dag är en knapp: tryck markerar datum i stället för att öppna
-    // appen. Markeringens ändpunkter är fyllda cirklar, intervallet ett tonat
-    // band, och dagens datum en ring (fylld cirkel är reserverad för valet).
+    // Every day is a button: a tap selects the date instead of opening the
+    // app. The selection endpoints are filled circles, the range a tinted
+    // band, and today a ring (the filled circle is reserved for selection).
     private func dayCell(_ day: MonthGrid.Day) -> some View {
         Button(intent: SelectDayIntent(date: day.date)) {
             Text("\(day.number)")
@@ -113,9 +113,9 @@ struct CalendarWidgetView: View {
         .buttonStyle(.plain)
     }
 
-    // Färgprioritet: markerings-ändpunkt (vit på accent) > röd dag >
-    // afton (orange) > idag (accent) > vanlig. Dagar utanför månaden får
-    // nedtonade varianter av samma färger.
+    // Color priority: selection endpoint (white on accent) > red day >
+    // eve (orange) > today (accent) > regular. Days outside the month get
+    // dimmed variants of the same colors.
     private func textStyle(for day: MonthGrid.Day) -> AnyShapeStyle {
         if day.isSelectionEdge {
             return AnyShapeStyle(.white)
@@ -132,9 +132,9 @@ struct CalendarWidgetView: View {
         return day.isInMonth ? AnyShapeStyle(.primary) : AnyShapeStyle(.tertiary)
     }
 
-    // Sammanfattning av markeringen: veckodag + veckonummer för ett enskilt
-    // datum, längd i dagar/nätter för ett intervall. Fast höjd (osynlig text
-    // när inget är markerat) så att kalendern inte hoppar.
+    // Selection summary: weekday + week number for a single date, length in
+    // days/nights for a range. Fixed height (invisible text when nothing is
+    // selected) so the calendar doesn't jump.
     private var footer: some View {
         HStack(spacing: 4) {
             Text(selectionSummary ?? " ")

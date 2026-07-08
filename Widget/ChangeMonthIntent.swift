@@ -1,12 +1,13 @@
 import AppIntents
 
-/// Stegar månadsvyn framåt/bakåt, eller hoppar till innevarande månad (steg 0).
-/// WidgetKit laddar om widgetens timeline automatiskt efter `perform()`.
+/// Steps the month view forward/backward, or jumps to the current month
+/// (step 0). WidgetKit reloads the widget's timeline automatically after
+/// `perform()`.
 struct ChangeMonthIntent: AppIntent {
-    static var title: LocalizedStringResource = "Byt månad"
+    static var title: LocalizedStringResource = "Change Month"
     static var isDiscoverable: Bool = false
 
-    @Parameter(title: "Steg")
+    @Parameter(title: "Step")
     var step: Int
 
     init() {}
@@ -25,12 +26,12 @@ struct ChangeMonthIntent: AppIntent {
     }
 }
 
-/// Markerar ett datum, hotellboknings-stil: start → slut → rensa/börja om.
+/// Selects a date, hotel-booking style: start → end → clear/start over.
 struct SelectDayIntent: AppIntent {
-    static var title: LocalizedStringResource = "Markera datum"
+    static var title: LocalizedStringResource = "Select Date"
     static var isDiscoverable: Bool = false
 
-    @Parameter(title: "Datum")
+    @Parameter(title: "Date")
     var date: Date
 
     init() {}
@@ -46,7 +47,7 @@ struct SelectDayIntent: AppIntent {
 }
 
 struct ClearSelectionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Rensa markering"
+    static var title: LocalizedStringResource = "Clear Selection"
     static var isDiscoverable: Bool = false
 
     init() {}

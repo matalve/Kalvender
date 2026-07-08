@@ -1,12 +1,12 @@
 import Foundation
 
-/// Helgdagar per land, helt beräknade — ingen kalenderdata hämtas.
+/// Public holidays per country, fully computed — no calendar data is fetched.
 ///
-/// Endast landsomfattande helgdagar ingår; regionala (tyska delstaters,
-/// spanska regioners, Skottlands/Nordirlands avvikande bank holidays)
-/// utelämnas. "Observed"-flyttar (USA/UK när dagen faller på helg)
-/// markeras inte — kalendern visar faktiska datum. Helgdagsnamnen står
-/// på landets eget språk; de är egennamn.
+/// Nationwide holidays only; regional ones (German states, Spanish regions,
+/// Scotland's/Northern Ireland's diverging bank holidays) are omitted.
+/// "Observed" shifts (US/UK when a holiday falls on a weekend) are not
+/// marked — the calendar shows actual dates. Holiday names are in each
+/// country's own language; they are proper nouns.
 enum HolidayRegion: String, CaseIterable, Sendable {
     case sweden
     case denmark
@@ -25,7 +25,7 @@ enum HolidayRegion: String, CaseIterable, Sendable {
 }
 
 extension HolidayRegion {
-    /// Årets helgdagar (röda dagar), datum → namn.
+    /// The year's public holidays (red days), date → name.
     func redDays(year: Int, calendar: Calendar) -> [Date: String] {
         var days: [Date: String] = [:]
         let easter = Self.easterSunday(year: year, calendar: calendar)
@@ -53,7 +53,7 @@ extension HolidayRegion {
             fix(12, 26, "Annandag jul")
 
         case .denmark:
-            // Store bededag avskaffades som helgdag 2024.
+            // Store Bededag was abolished as a public holiday in 2024.
             fix(1, 1, "Nytårsdag")
             easterRel(-3, "Skærtorsdag")
             easterRel(-2, "Langfredag")
@@ -123,7 +123,7 @@ extension HolidayRegion {
             easterRel(-2, "Goede Vrijdag")
             easterRel(0, "Eerste paasdag")
             easterRel(1, "Tweede paasdag")
-            // Koningsdag firas 26 april när 27 april är en söndag.
+            // Koningsdag is celebrated on April 26 when the 27th is a Sunday.
             var kingsDay = Self.date(year, 4, 27, calendar)
             if calendar.component(.weekday, from: kingsDay) == 1 {
                 kingsDay = Self.adding(-1, to: kingsDay, calendar)
@@ -226,8 +226,8 @@ extension HolidayRegion {
         return days
     }
 
-    /// De facto-aftnar (visas i annan färg): inte formella helgdagar men
-    /// dagar då det mesta stänger tidigt eller helt.
+    /// De facto eves (shown in a different color): not formal holidays, but
+    /// days when most things close early or entirely.
     func eves(year: Int, calendar: Calendar) -> [Date: String] {
         var days: [Date: String] = [:]
         func fix(_ month: Int, _ day: Int, _ name: String) {
@@ -246,7 +246,7 @@ extension HolidayRegion {
             fix(12, 24, "Jouluaatto")
             fix(12, 31, "Uudenvuodenaatto")
         case .denmark:
-            // Grundlovsdag är formellt halvdag men de facto ledig.
+            // Grundlovsdag is formally a half day but de facto off.
             fix(6, 5, "Grundlovsdag")
             fix(12, 24, "Juleaften")
             fix(12, 31, "Nytårsaften")
@@ -280,7 +280,7 @@ extension HolidayRegion {
         return days
     }
 
-    /// Namnet på helgdagen eller aftonen ett visst datum, annars nil.
+    /// The name of the holiday or eve on a given date, otherwise nil.
     func name(for date: Date, calendar: Calendar) -> String? {
         let day = calendar.startOfDay(for: date)
         let year = calendar.component(.year, from: day)
@@ -288,7 +288,7 @@ extension HolidayRegion {
             ?? eves(year: year, calendar: calendar)[day]
     }
 
-    /// Påskdagen enligt den anonyma gregorianska algoritmen (computus).
+    /// Easter Sunday per the anonymous Gregorian algorithm (computus).
     static func easterSunday(year: Int, calendar: Calendar) -> Date {
         let a = year % 19
         let b = year / 100
@@ -307,7 +307,7 @@ extension HolidayRegion {
         return date(year, month, day, calendar)
     }
 
-    /// N:te förekomsten av en veckodag i en månad (weekday: 1=sön…7=lör).
+    /// The nth occurrence of a weekday in a month (weekday: 1=Sun…7=Sat).
     static func nthWeekday(_ n: Int, weekday: Int, month: Int, year: Int, _ calendar: Calendar) -> Date {
         var day = date(year, month, 1, calendar)
         while calendar.component(.weekday, from: day) != weekday {
@@ -316,7 +316,7 @@ extension HolidayRegion {
         return adding(7 * (n - 1), to: day, calendar)
     }
 
-    /// Sista förekomsten av en veckodag i en månad.
+    /// The last occurrence of a weekday in a month.
     static func lastWeekday(_ weekday: Int, month: Int, year: Int, _ calendar: Calendar) -> Date {
         let firstOfNext = month == 12
             ? date(year + 1, 1, 1, calendar)

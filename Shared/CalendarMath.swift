@@ -1,27 +1,27 @@
 import Foundation
 
-/// En färdigberäknad månadsvy: sex veckorader med ISO 8601-veckonummer.
+/// A precomputed month view: six week rows with ISO 8601 week numbers.
 ///
-/// ISO 8601-kalendern ger måndag som första veckodag och de veckonummer
-/// som används i Sverige (första torsdagen avgör vecka 1), inklusive
-/// kantfallen runt årsskiften där 29–31 december kan vara vecka 1 och
-/// 1–3 januari vecka 52/53.
+/// The ISO 8601 calendar gives Monday as the first weekday and the week
+/// numbers used in most of Europe (the first Thursday determines week 1),
+/// including the year-boundary edge cases where Dec 29–31 can be week 1
+/// and Jan 1–3 week 52/53.
 struct MonthGrid {
     struct Day: Hashable, Identifiable {
         let date: Date
         let number: Int
         let isInMonth: Bool
         let isToday: Bool
-        /// Start-/slutpunkt för markerat intervall (ett ensamt markerat
-        /// datum är enbart startpunkt).
+        /// Start/end point of a selected range (a single selected date is
+        /// just a start point).
         let isSelectionEdge: Bool
-        /// Ligger inom ett komplett markerat intervall, inklusive kanterna.
+        /// Falls within a complete selected range, endpoints included.
         let isInSelection: Bool
-        /// Röd dag: söndag eller svensk helgdag.
+        /// Red day: a Sunday or a public holiday.
         let isRedDay: Bool
-        /// De facto-afton (jul-, nyårs- eller midsommarafton).
+        /// De facto eve (Christmas Eve, New Year's Eve, Midsummer Eve, …).
         let isEve: Bool
-        /// Helgdagens/aftonens namn, om dagen har ett.
+        /// Name of the holiday or eve, if the day has one.
         let holidayName: String?
         var id: Date { date }
     }
@@ -33,22 +33,22 @@ struct MonthGrid {
         var id: Date { days[0].date }
     }
 
-    /// T.ex. "Juli 2026".
+    /// E.g. "July 2026".
     let title: String
-    /// Veckodagsbokstäver i visningsordning, måndag först.
+    /// Weekday letters in display order, Monday first.
     let weekdaySymbols: [String]
-    /// Alltid sex rader, så att layouten inte hoppar mellan månader.
+    /// Always six rows, so the layout doesn't jump between months.
     let weeks: [Week]
     let isCurrentMonth: Bool
 
-    /// Kalender med systemets locale — räcker för ren datummatematik
-    /// (dygnsjämförelser m.m.) som är locale-oberoende.
+    /// Calendar with the system locale — sufficient for pure date math
+    /// (same-day comparisons etc.), which is locale-independent.
     static var calendar: Calendar {
         calendar(for: .autoupdatingCurrent)
     }
 
-    /// Kalender för visning: locale styr månadsnamn, veckodagsbokstäver
-    /// och datumformat. Veckoreglerna är alltid ISO 8601 oavsett locale.
+    /// Calendar for display: the locale drives month names, weekday letters
+    /// and date formats. Week rules are always ISO 8601 regardless of locale.
     static func calendar(for locale: Locale) -> Calendar {
         var calendar = Calendar(identifier: .iso8601)
         calendar.locale = locale
@@ -84,8 +84,8 @@ struct MonthGrid {
         let leadingDays = (weekdayOfFirst - firstWeekday + 7) % 7
         var cursor = calendar.date(byAdding: .day, value: -leadingDays, to: monthStart)!
 
-        // Gridden kan spänna över ett årsskifte, så slå upp helgdagar för
-        // båda årtalen den rör vid.
+        // The grid can span a year boundary, so look up holidays for both
+        // years it touches.
         var redDays: [Date: String] = [:]
         var eves: [Date: String] = [:]
         let lastDay = calendar.date(byAdding: .day, value: 41, to: cursor)!

@@ -1,7 +1,7 @@
 import AppIntents
 
-/// Widgetens inställningspanel (högerklick → "Redigera widget").
-/// macOS renderar formuläret automatiskt från parametrarna.
+/// The widget's settings panel (right-click → "Edit Widget").
+/// macOS renders the form automatically from the parameters.
 struct ConfigurationIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Settings"
     static var description = IntentDescription("Calendar widget settings.")
@@ -33,10 +33,10 @@ extension HolidayRegion: AppEnum {
     ]
 }
 
-/// Visningsspråk. Medvetet ingen "systemspråk"-option: strängtabellen
-/// nedan täcker exakt dessa språk, så ett systemspråk utanför listan
-/// (t.ex. spanska) skulle ge en halvöversatt widget. Engelska är därför
-/// standard och listan utökas bara ihop med tabellen.
+/// Display language. Deliberately no "system language" option: the string
+/// table below covers exactly these languages, so a system language outside
+/// the list would produce a half-translated widget. English is therefore
+/// the default, and the list only grows together with the table.
 enum WidgetLanguage: String, AppEnum {
     case english
     case swedish
@@ -72,8 +72,9 @@ enum WidgetLanguage: String, AppEnum {
     }
 }
 
-/// De hårdkodade UI-strängarna — allt annat språkberoende (månadsnamn,
-/// veckodagar, datumformat) kommer ur `Locale` via systemets formatterare.
+/// The hard-coded UI strings — everything else that is language-dependent
+/// (month names, weekdays, date formats) comes from `Locale` via the
+/// system formatters.
 struct WidgetStrings {
     let weekLabel: String
     let days: String

@@ -1,10 +1,10 @@
 import Foundation
 
-/// Vald månad som offset från innevarande månad.
+/// The displayed month as an offset from the current month.
 ///
-/// Lagras i widget-processens egna `UserDefaults` — både knapparnas intents
-/// och timeline-providern kör i widget-extensionens process, så ingen
-/// App Group behövs (och därmed ingen extra signeringskonfiguration).
+/// Stored in the widget process's own `UserDefaults` — both the button
+/// intents and the timeline provider run in the widget extension's process,
+/// so no App Group is needed (and thus no extra signing configuration).
 enum MonthOffsetStore {
     private static let offsetKey = "monthOffset"
     private static let changedAtKey = "monthOffsetChangedAt"
@@ -15,8 +15,8 @@ enum MonthOffsetStore {
         defaults.set(Date.now.timeIntervalSinceReferenceDate, forKey: changedAtKey)
     }
 
-    /// Nollställs automatiskt vid dygnsskifte, så att widgeten alltid visar
-    /// dagens månad på morgonen även om man bläddrade iväg kvällen innan.
+    /// Resets automatically at midnight, so the widget always wakes up on
+    /// the current month even if you browsed away the night before.
     static func currentOffset(today: Date = .now) -> Int {
         let offset = defaults.integer(forKey: offsetKey)
         guard offset != 0 else { return 0 }
