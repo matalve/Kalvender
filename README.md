@@ -28,9 +28,10 @@ desktop, without involving calendar accounts or events.
 - **Week numbers** per ISO 8601 (Monday first, "first Thursday" rule) —
   correct even across year boundaries, where Dec 29–31 can be week 1 and
   Jan 1–3 week 52/53.
-- **Step between months** with ◀ / ▶. Tap the month title to jump back to
-  today; the title turns accent-colored when you're on another month.
-  Browsing resets automatically at midnight.
+- **Step between months** with ◀ / ▶. To jump back, a **Today** button
+  appears in the bottom-left corner whenever you're on another month
+  (tapping the month title does the same); the title also turns
+  accent-colored as a reminder. Browsing resets automatically at midnight.
 - **Select a date or a range**, hotel-booking style: tap a day to select it —
   the row below the calendar shows its weekday, week number and any holiday.
   Tap a later day to select the whole range (shows the number of days and

@@ -61,13 +61,13 @@ enum WidgetLanguage: String, AppEnum {
         switch self {
         case .english: WidgetStrings(
             weekLabel: "wk", days: "days", daysShort: "d",
-            night: "night", nights: "nights")
+            night: "night", nights: "nights", today: "Today")
         case .swedish: WidgetStrings(
             weekLabel: "v.", days: "dagar", daysShort: "dgr",
-            night: "natt", nights: "nätter")
+            night: "natt", nights: "nätter", today: "Idag")
         case .spanish: WidgetStrings(
             weekLabel: "sem.", days: "días", daysShort: "d",
-            night: "noche", nights: "noches")
+            night: "noche", nights: "noches", today: "Hoy")
         }
     }
 }
@@ -81,4 +81,5 @@ struct WidgetStrings {
     let daysShort: String
     let night: String
     let nights: String
+    let today: String
 }

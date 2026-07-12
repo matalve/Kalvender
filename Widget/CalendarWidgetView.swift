@@ -132,11 +132,23 @@ struct CalendarWidgetView: View {
         return day.isInMonth ? AnyShapeStyle(.primary) : AnyShapeStyle(.tertiary)
     }
 
-    // Selection summary: weekday + week number for a single date, length in
-    // days/nights for a range. Fixed height (invisible text when nothing is
-    // selected) so the calendar doesn't jump.
+    // Footer row. Leading: a "Today" button, shown only when browsing away
+    // from the current month (tapping the title does the same, but a visible
+    // button is discoverable). Trailing: the selection summary — weekday +
+    // week number for a single date, length in days/nights for a range.
+    // Fixed height (invisible text when empty) so the calendar doesn't jump.
     private var footer: some View {
         HStack(spacing: 4) {
+            if !entry.grid.isCurrentMonth {
+                Button(intent: ChangeMonthIntent(step: 0)) {
+                    Text(entry.language.strings.today)
+                        .font(labelFont)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.tint)
+                }
+                .buttonStyle(.plain)
+            }
+            Spacer(minLength: 8)
             Text(selectionSummary ?? " ")
                 .font(labelFont)
                 .foregroundStyle(.secondary)
